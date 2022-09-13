@@ -1,0 +1,49 @@
+118. Pascal's Triangle
+    class Solution:
+        def generate(self, numRows: int) -> List[List[int]]:
+            arr = []
+            for n in range(numRows):
+                if n == 0: arr.append([1]) 
+                elif n == 1: arr.append([1,1]) 
+                else:
+                    arrT = [None]*(n+1)
+                    for i in range(n//2 + 1):
+                        if i == 0:
+                            arrT[i] = 1
+                            arrT[n] = 1
+                        else:                        
+                            arrT[i] = arr[n-1][i-1] + arr[n-1][i] 
+                            arrT[n-i] = arrT[i]
+                    arr.append(arrT)
+            return arr;
+            
+27. Remove Element
+    class Solution:
+        def removeElement(self, nums: List[int], val: int) -> int:
+            n = len(nums)
+            nv = 0
+            for i in range(n):
+                if nums[i] != val:
+                    nums[nv] = nums[i]
+                    nv += 1
+
+            return nv
+
+    # Time complexity O(n)
+    # Space complexity O(n)
+    
+ 66. Plus One
+     class Solution:
+        def plusOne(self, digits: List[int]) -> List[int]:
+            n = len(digits)
+            for i in range(n):
+                idx = n - 1 - i
+                if digits[idx] != 9:
+                    digits[idx] +=1
+                    return digits
+                else:
+                    digits[idx] = 0
+            return  [1] + digits
+
+    # Time complexity O(n)
+    # Space complexity O(n) with output
